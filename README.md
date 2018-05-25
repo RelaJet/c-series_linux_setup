@@ -1,5 +1,9 @@
 # Relajet C Series Open Source SDK
 
+Author: Wig Cheng <wig.cheng@relajet.com>
+
+Last Update: 2018/05/25
+
 This SDK is based on Relajet C Series product and seperated 4 parts: Linux Kernel, Buildroot OS, build script and image flash tool:
 
 ## Environment Setup
