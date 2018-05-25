@@ -84,3 +84,27 @@ create a flashed uSD card (recommend use class 10) :
     NOTE: sdx is your device node, example: flashcard /dev/sdb
     After done the flashcard, plug the uSD card to c-series and starting flash process
     Enjoy!!
+
+## Create your own machine learning (ML) application (ex: relajet customize caffe model on opencv)
+
+Step 1. Setting up the cross-compiler from Buildroot (have to do previes chapter first):
+
+    $ export CROSS_COMPILE="${PWD}/buildroot/output/host/bin/arm-buildroot-linux-uclibcgnueabi-"
+    $ export PATH=${PWD}/output/host/bin:$PATH
+
+Step 2. Compiling your application using g++ and opencv ML relative libraries
+
+    $ arm-buildroot-linux-uclibcgnueabi-g++ demo.cpp -o demo \
+    -I "${PWD}"/buildroot/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include/ \
+    -L "${PWD}"/buildroot/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/lib \
+    -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_dnn -lopencv_imgcodecs
+
+Step 3. copy your applications to uSD card
+
+    $ sudo mount /dev/sdx /mnt/
+    $ sudo cp demo /mnt
+    $ sudo cp relajet.prototxt relajet.caffemodel /mnt/
+    $ sudo umount /mnt/
+    NOTE: sdx is your device node
+    caffemodel and prototxt were made by Relajet
+    Enjoy!!
