@@ -108,3 +108,21 @@ Step 3. copy your applications to uSD card
     NOTE: sdx is your device node
     caffemodel and prototxt were made by Relajet
     Enjoy!!
+
+## Create a connection based on WiFi Station mode
+
+Step 1. First Setting for SSID and PASSWORD configuration:
+
+    $ wpa_passphrase <desired SSID> <desired PASSWORD> > wifi_home.conf
+    $ wpa_supplicant -i eth0 -c wifi_home.conf &
+    $ iot-tool -s <desired SSID> -p <desired PASSWORD> -a 9 -e 8
+    $ poweroff
+
+Step 2. Replug-in the power cable to boot up, then issue the commands:
+
+    $ ifconfig eth0 up
+    $ iot-tool -i (optional, it's check the status of connection)
+    route the ip to Linux when the MT7682 WiFi connection success
+    $ ip route ( check your gateway ip address)
+    $ route add default gw <your gateway ip address>
+    $ ping 8.8.8.8
